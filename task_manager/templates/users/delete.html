@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% load django_bootstrap5 %}
+
+{% load i18n %}
+
+{% block content %}
+    <h1 class="my-4">{% translate 'Delete' %}</h1>
+    <form action="{% url 'user_delete' pk=object.id%}" method="post" class="form">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        {% bootstrap_form form %}
+        {% bootstrap_button button_type="submit" content="Confirm" %}
+    </form>
+{% endblock %}

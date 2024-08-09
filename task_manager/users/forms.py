@@ -6,8 +6,8 @@ from django.contrib.auth import get_user_model
 
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(label='username', widget=forms.TextInput())
-    password1 = forms.CharField(label='password', widget=forms.PasswordInput())
-    password2 = forms.CharField(label='repeat password', widget=forms.PasswordInput())
+    password1 = forms.CharField(label='password', widget=forms.PasswordInput(), min_length=3)
+    password2 = forms.CharField(label='repeat password', widget=forms.PasswordInput(), min_length=3)
 
     class Meta:
         model = get_user_model()

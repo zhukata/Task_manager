@@ -5,12 +5,12 @@
 {% load i18n %}
 
 {% block content %}
-    <h1 class="my-4">{% translate 'Sign Up' %}</h1>
-    <form action="{% url 'user_create' %}" method="post" class="form">
+    <h1 class="my-4">{% translate 'Update' %}</h1>
+    <form action="{% url 'user_update' pk=object.id %}" method="post" class="form">
         {% csrf_token %}
         <table border="1">
             {% bootstrap_form form %}
         </table>
-        {% bootstrap_button button_type="submit" content="Create" %}
+        {% bootstrap_button button_type="submit" content="Update" %}
     </form>
 {% endblock %}
