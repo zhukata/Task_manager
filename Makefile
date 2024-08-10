@@ -13,5 +13,8 @@ start:
 migrate:
 	poetry run python manage.py migrate
 
+makemigrate:
+	poetry run python manage.py makemigrations
+
 build:
 	./build.sh

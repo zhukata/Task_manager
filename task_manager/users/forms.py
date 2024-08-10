@@ -13,3 +13,6 @@ class UserRegisterForm(UserCreationForm):
         model = get_user_model()
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
         labels = { 'first_name': 'first_name', 'last_name': 'last_name', 'email': 'email'}
+
+
+# class UserLoginForm(AuthenticationForm):

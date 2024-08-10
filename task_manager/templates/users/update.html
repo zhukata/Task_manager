@@ -5,6 +5,7 @@
 {% load i18n %}
 
 {% block content %}
+
     <h1 class="my-4">{% translate 'Update' %}</h1>
     <form action="{% url 'user_update' pk=object.id %}" method="post" class="form">
         {% csrf_token %}
@@ -13,4 +14,5 @@
         </table>
         {% bootstrap_button button_type="submit" content="Update" %}
     </form>
+
 {% endblock %}
