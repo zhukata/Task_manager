@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% load django_bootstrap5 %}
+
+{% load i18n %}
+
+{% block content %}
+
+    <h1 class="my-4">{% translate 'Create status' %}</h1>
+    <form action="{% url 'status_create' %}" method="post" class="form">
+        {% csrf_token %}
+        <table border="1">
+            {% bootstrap_form form %}
+        </table>
+        {% bootstrap_button button_type="submit" content="Create" %}
+    </form>
+    
+{% endblock %}

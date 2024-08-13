@@ -28,10 +28,10 @@
           <li class="nav-item">{{ user.get_username }}</li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'user_login' %}">{% translate 'Statuses' %}</a>
+            <a class="nav-link" href="{% url 'statuses' %}">{% translate 'Statuses' %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'user_create' %}">{% translate 'Tasks' %}</a>
+            <a class="nav-link" href="{% url 'tasks' %}">{% translate 'Tasks' %}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'user_logout' %} ">{% translate 'Sign Out' %}</a>
@@ -50,26 +50,18 @@
     </nav>
     <div class="container">
       {% bootstrap_messages %}
+
+      <!-- {% if form.errors %}
+      <div>
+          <ul>
+          {% for error in form.errors %}
+              <li><strong>{{ error|escape }}</strong></li>
+          {% endfor %}
+          </ul>
+      </div>
+      {% endif %}   -->
+
     </div>
-
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
-    {% if form.errors %}
-    <div>
-        <ul>
-        {% for error in form.errors %}
-            <li><strong>{{ error|escape }}</strong></li>
-        {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
-
     <div class="container wrapper flex-grow-1">
 
         {% block content %}{% endblock %}

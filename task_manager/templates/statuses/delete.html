@@ -7,9 +7,9 @@
 {% block content %}
 
     <h1 class="my-4">{% translate 'Delete' %}</h1>
-    <form action="{% url 'user_delete' pk=object.id%}" method="post" class="form">
+    <form action="{% url 'status_delete' pk=object.id %}" method="post" class="form">
         {% csrf_token %}
-        <p>Are you sure you want to delete "{{ object.first_name }} {{ object.second_name }}"?</p>
+        <p>Are you sure you want to delete "{{ object.name }}"?</p>
         {% bootstrap_form form %}
         {% bootstrap_button button_type="submit" button_class="btn-danger" content="Yes, delete" %}
     </form>
