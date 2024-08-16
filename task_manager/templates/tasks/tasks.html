@@ -11,7 +11,10 @@
       <tr>
         <th>ID</th>
         <th>{% translate 'Name' %}</th>
-        <th>{% translate 'Created' %}</th>
+        <th>{% translate 'Status' %}</th>
+        <th>{% translate 'Author' %}</th>
+        <th>{% translate 'Executor' %}</th>
+        <th>{% translate 'Created_at' %}</th>
         <th></th>
       </tr>
     </thead>
@@ -19,7 +22,10 @@
         {% for task in tasks %}
         <tr>
             <td>{{ task.id }}</td>
-            <td>{{ task.name }}</td>
+            <td><a href="{% url 'task_show' %}">{{ task.name }}</a></td>
+            <td>{{ task.status }}</td>
+            <td>{{ task.author }}</td>
+            <td>{{ task.executor }}</td>
             <td>{{ task.created_at}}</td>
             <td>
             <a href="{% url 'task_update' pk=task.id %}">Изменить</a>

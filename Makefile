@@ -11,7 +11,7 @@ dev:
 	poetry run python manage.py runserver
 
 start:
-	poetry run gunicorn task_manager.asgi:application --bind 0.0.0.0:80
+	poetry run gunicorn task_manager.wsgi
 
 migrate:
 	poetry run python manage.py migrate

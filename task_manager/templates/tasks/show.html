@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-secondary text-white">
+      <h2>object.name</h2>
+    </div>
+    <div class="card-body bg-light">
+      <p></p>
+      <hr>
+      <div class="container">
+        <div class="row p-1">
+          <div class="col">Автор</div>
+          <div class="col">Иван Ивановввв</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">Исполнитель</div>
+          <div class="col">None</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">Статус</div>
+          <div class="col">kaluga40</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">Дата создания</div>
+          <div class="col">09.08.2024 11:39</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">
+            <h6>Метки:</h6>
+            <ul>
+              
+                <li>test</li>
+              
+            </ul>
+          </div>
+        </div>
+        <div class="row p-1">
+          <div class="col">
+            <a href="/tasks/2/update/">Изменить</a>
+            <br>
+            <a href="/tasks/2/delete/">Удалить</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
