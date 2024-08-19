@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.auth import get_user_model
@@ -46,6 +47,12 @@ class UserDeleteView(SuccessMessageMixin, UserPassesMixin, DeleteView):
     extra_context = {'title': _('Delete user'),
                      'form_url': 'user_delete',
                      'button_name': _('Delete'), }
+    
+    def form_valid(self, form):
+        if self.object.task_set.all():
+            messages.error(self.request, _('Cannot delete user because it is in use'))
+            return redirect('users')
+        return super().form_valid(form)
 
 
 class UserLoginView(SuccessMessageMixin, LoginView):

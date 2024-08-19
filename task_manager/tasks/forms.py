@@ -2,7 +2,6 @@ from django import forms
 
 from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
-from django.contrib.auth import get_user_model
 
 
 class TaskCraeteForm(forms.ModelForm):
@@ -11,5 +10,5 @@ class TaskCraeteForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ['name', 'description', 'status', 'executor',]
-        labels = {'description': 'Description', 'executor': 'Executor', }
+        fields = ['name', 'description', 'status', 'executor', 'labels', ]
+        labels = {'description': 'Description', 'executor': 'Executor', 'labels': 'Labels', }
