@@ -1,6 +1,6 @@
 from django import forms
 
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm , UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
 
 
@@ -14,7 +14,7 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
-        labels = { 'email': 'email'}
+        labels = {'email': 'email'}
 
 
 class UserUpdateForm(UserChangeForm):
@@ -31,7 +31,5 @@ class UserUpdateForm(UserChangeForm):
     class Meta:
         model = get_user_model()
         fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
-        labels = { 'first_name': 'first_name', 'last_name': 'last_name', 'email': 'email'}
-        help_texts = {'password': None,}
-
-
+        labels = {'first_name': 'first_name', 'last_name': 'last_name', 'email': 'email'}
+        help_texts = {'password': None, }

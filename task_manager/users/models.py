@@ -9,4 +9,3 @@ from django.db import models
 
 #     def __str__(self) -> str:
 #         return self.name
-    

@@ -1,11 +1,10 @@
-{% extends "layout.html" %}
+{% extends "layouts/base.html" %}
 
-{% load django_bootstrap5 %}
-{% load i18n %}
+{% load django_bootstrap5 i18n %}
 
 {% block content %}
-<h1 class="my-4">{% translate 'Tasks' %}</h1>
-{% bootstrap_button button_type="link" href='/tasks/create' content="Create task" %}
+<h1 class="my-4">{{ title }}</h1>
+{% bootstrap_button button_type="link" href='/tasks/create' content=button_name %}
 <table class="table table-striped">
     <thead>
       <tr>
@@ -22,7 +21,7 @@
         {% for task in tasks %}
         <tr>
             <td>{{ task.id }}</td>
-            <td><a href="{% url 'task_show' %}">{{ task.name }}</a></td>
+            <td><a href="{% url 'task_show' pk=task.id %}">{{ task.name }}</a></td>
             <td>{{ task.status }}</td>
             <td>{{ task.author }}</td>
             <td>{{ task.executor }}</td>

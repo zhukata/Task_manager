@@ -1,9 +1,6 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
-from django.contrib.auth import get_user_model, logout
-from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext as _
 
@@ -11,10 +8,13 @@ from task_manager.mixins import AuthorRequiredMixin
 from task_manager.tasks.forms import TaskCraeteForm
 from task_manager.tasks.models import Task
 
+
 class TaskIndexView(LoginRequiredMixin, ListView):
     model = Task
     template_name = 'tasks/tasks.html'
     context_object_name = 'tasks'
+    extra_context = {'title': _('Tasks'),
+                     'button_name': _('Create task'), }
 
 
 class TaskShowView(LoginRequiredMixin, DetailView):
@@ -24,9 +24,12 @@ class TaskShowView(LoginRequiredMixin, DetailView):
 
 class TaskCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     form_class = TaskCraeteForm
-    template_name = 'tasks/create.html'
+    template_name = 'layouts/create.html'
     success_url = reverse_lazy('tasks')
     success_message = _("Task was created successfully")
+    extra_context = {'title': _('Create task'),
+                     'form_url': 'task_create',
+                     'button_name': _('Create'), }
 
     def form_valid(self, form):
         task = form.save(commit=False)
@@ -37,13 +40,19 @@ class TaskCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 class TaskUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     form_class = TaskCraeteForm
     model = Task
-    template_name = 'tasks/update.html'
+    template_name = 'layouts/update.html'
     success_url = reverse_lazy('tasks')
     success_message = _("Task was updated successfully")
+    extra_context = {'title': _('Update task'),
+                     'form_url': 'task_update',
+                     'button_name': _('Update'), }
 
 
 class TaskDeleteView(SuccessMessageMixin, AuthorRequiredMixin, DeleteView):
     model = Task
-    template_name = 'tasks/delete.html'
+    template_name = 'layouts/delete.html'
     success_url = reverse_lazy('tasks')
     success_message = _("Task was deleted")
+    extra_context = {'title': _('Delete task'),
+                     'form_url': 'task_delete',
+                     'button_name': _('Delete'), }

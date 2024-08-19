@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-make install && make migrate
+make install && make makemigrate && make migrate
