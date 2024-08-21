@@ -55,21 +55,9 @@
     </nav>
     <div class="container">
       {% bootstrap_messages %}
-
-      <!-- {% if form.errors %}
-      <div>
-          <ul>
-          {% for error in form.errors %}
-              <li><strong>{{ error|escape }}</strong></li>
-          {% endfor %}
-          </ul>
-      </div>
-      {% endif %}   -->
-
     </div>
     <div class="container wrapper flex-grow-1">
-
-        {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
     </div>
     <footer>
       <div class="container my-5 pt-4 border-top">

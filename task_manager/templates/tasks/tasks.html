@@ -3,8 +3,19 @@
 {% load django_bootstrap5 i18n %}
 
 {% block content %}
+
 <h1 class="my-4">{{ title }}</h1>
-{% bootstrap_button button_type="link" href='/tasks/create' content=button_name %}
+{% bootstrap_button button_type="link" href='/tasks/create' content=button_name1 %}
+
+<div class="card mb-3">
+  <div class="card-body bg-light">
+    <form method="get" class="form">
+      {% csrf_token %}
+      {% bootstrap_form filter.form %}
+      {% bootstrap_button button_type="submit" content=button_name2 %}
+    </form>
+  </div>
+</div>
 <table class="table table-striped">
     <thead>
       <tr>

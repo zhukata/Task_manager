@@ -3,18 +3,22 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView,
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext as _
+from django_filters.views import FilterView
 
 from task_manager.mixins import AuthorRequiredMixin
-from task_manager.tasks.forms import TaskCraeteForm
+from task_manager.tasks.forms import TaskCraeteForm, TaskFilter
 from task_manager.tasks.models import Task
 
 
-class TaskIndexView(LoginRequiredMixin, ListView):
+class TaskIndexView(LoginRequiredMixin, FilterView):
     model = Task
+    filterset_class = TaskFilter
+    
     template_name = 'tasks/tasks.html'
     context_object_name = 'tasks'
     extra_context = {'title': _('Tasks'),
-                     'button_name': _('Create task'), }
+                     'button_name1': _('Create task'),
+                     'button_name2': _('Show'), }
 
 
 class TaskShowView(LoginRequiredMixin, DetailView):
@@ -28,7 +32,7 @@ class TaskCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('tasks')
     success_message = _("Task was created successfully")
     extra_context = {'title': _('Create task'),
-                     'form_url': 'task_create',
+                     'form_url': 'task_create', #reverse
                      'button_name': _('Create'), }
 
     def form_valid(self, form):

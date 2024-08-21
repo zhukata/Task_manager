@@ -32,8 +32,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',') strip
-ALLOWED_HOSTS = ['webserver', 'localhost', '127.0.0.1', '0.0.0.0']
+
+ALLOWED_HOSTS = ['webserver', 'localhost', '127.0.0.1', '0.0.0.0', '.onrender.com']
 
 
 # Application definition
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'task_manager.statuses',
     'task_manager.tasks',
     'task_manager.labels',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

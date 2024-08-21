@@ -1,3 +1,5 @@
+from django.http import HttpRequest
+from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
@@ -9,6 +11,7 @@ from django.contrib import messages
 from task_manager.mixins import UserPassesMixin
 from task_manager.users.forms import UserRegisterForm, UserUpdateForm
 from django.utils.translation import gettext as _
+from django.db import models
 
 
 class UserIndexView(ListView):
@@ -45,11 +48,11 @@ class UserDeleteView(SuccessMessageMixin, UserPassesMixin, DeleteView):
     success_url = reverse_lazy('users')
     success_message = _("User was deleted")
     extra_context = {'title': _('Delete user'),
-                     'form_url': 'user_delete',
+                     'form_url': 'user_delete',#reverse_lazy
                      'button_name': _('Delete'), }
-    
+
     def form_valid(self, form):
-        if self.object.task_set.all():
+        if self.object.author.all().exists() or self.object.executor.all().exists():
             messages.error(self.request, _('Cannot delete user because it is in use'))
             return redirect('users')
         return super().form_valid(form)
@@ -64,11 +67,9 @@ class UserLoginView(SuccessMessageMixin, LoginView):
                      'button_name': _('Login'), }
 
 
-class UserLogoutView(SuccessMessageMixin, LogoutView):
-    success_message = _("You are logged out")
-    # def form_valid(self):
-    #     response = super().form_valid(self.form)
-    #     success_message = self.get_success_message(self.form.cleaned_data)
-    #     if success_message:
-    #         messages.info(self.request, _("You are logged out"))
-    #     return response
+class UserLogoutView(LogoutView):
+
+    def dispatch(self, request, *args, **kwargs):
+        messages.info(request, _("You are logged out"))
+        return super().dispatch(request, *args, **kwargs)
+

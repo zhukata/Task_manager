@@ -5,20 +5,18 @@ from django.utils.translation import gettext as _
 
 
 class UserPassesMixin(AccessMixin):
+
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return self.handle_no_permission()
-        if request.user.is_authenticated:
-            if request.user.id != self.get_object().id:
-                messages.error(request, _('You do not have permission to modify another user.'))
-                return redirect('users')
+        if request.user.id != self.get_object().id:
+            messages.error(request, _('You do not have permission to modify another user.'))
+            return redirect('users')
         return super().dispatch(request, *args, **kwargs)
 
 
 class AuthorRequiredMixin(AccessMixin):
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
+        if not request.user.is_authenticated: #delete
             return self.handle_no_permission()
         if request.user.is_authenticated:
             if request.user != self.get_object().author:
