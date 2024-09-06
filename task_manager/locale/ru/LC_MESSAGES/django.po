@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-06 16:17+0300\n"
+"POT-Creation-Date: 2024-09-06 18:52+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,14 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
 #: task_manager/labels/views.py:15
+#, fuzzy
+#| msgid "Labels"
+msgid "labels"
+msgstr "Метки"
+
+#: task_manager/labels/views.py:16 task_manager/labels/views.py:23
 msgid "Create label"
 msgstr "Создать метку"
 
@@ -67,12 +74,16 @@ msgid "The label cannot be deleted because it is in use."
 msgstr "Невозможно удалить метку, потому что она используется"
 
 #: task_manager/mixins.py:14
+msgid "You are not logged in! Please sign in."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+#: task_manager/mixins.py:17
 msgid "You do not have permission to modify another user."
 msgstr "У вас нет прав для изменения другого пользователя."
 
-#: task_manager/mixins.py:24
+#: task_manager/mixins.py:27
 msgid "A task can only be deleted by its author."
-msgstr "Задачу может удалить только ее автор"
+msgstr "Задачу может удалить только её автор"
 
 #: task_manager/statuses/views.py:15
 #: task_manager/templates/layouts/base.html:29
