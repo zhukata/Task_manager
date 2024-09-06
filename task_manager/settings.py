@@ -130,6 +130,8 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -147,8 +149,17 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'user_login'
 
+POST_SERVER_ITEM_ACCESS_TOKEN = os.getenv('POST_SERVER_ITEM_ACCESS_TOKEN')
+
+# ROLLBAR = {
+#     'access_token': POST_SERVER_ITEM_ACCESS_TOKEN,
+#     'environment': 'development' if DEBUG else 'production',
+#     'code_version': '1.0',
+#     'branch': 'master',
+#     'root': BASE_DIR,
+# }
 ROLLBAR = {
-    'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
+    'access_token': 'f1fd780515d543f1b2cf8f01ec219ba9',
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
     'root': BASE_DIR,
