@@ -1,17 +1,14 @@
-from django.http import HttpRequest
-from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.views.generic import ListView
 from django.contrib.auth import get_user_model
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView, LoginView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from task_manager.mixins import UserPassesMixin
+from task_manager.mixins import CheckUserMixin, CreateUserMixin, DeleteMixin, UpdateMixin
 from task_manager.users.forms import UserRegisterForm, UserUpdateForm
 from django.utils.translation import gettext as _
-from django.db import models
 
 
 class UserIndexView(ListView):
@@ -21,9 +18,8 @@ class UserIndexView(ListView):
     extra_context = {'title': _('Users'), }
 
 
-class UserRegisterView(SuccessMessageMixin, CreateView):
+class UserRegisterView(CreateUserMixin):
     form_class = UserRegisterForm
-    template_name = 'layouts/create.html'
     success_url = reverse_lazy('user_login')
     success_message = _("User was created successfully")
     extra_context = {'title': _('Create user'),
@@ -31,10 +27,9 @@ class UserRegisterView(SuccessMessageMixin, CreateView):
                      'button_name': _('Create'), }
 
 
-class UserUpdateView(SuccessMessageMixin, UserPassesMixin, UpdateView):
+class UserUpdateView(CheckUserMixin, UpdateMixin):
     form_class = UserUpdateForm
     model = get_user_model()
-    template_name = 'layouts/update.html'
     success_url = reverse_lazy('users')
     success_message = _("User was updated successfully")
     extra_context = {'title': _('Update user'),
@@ -42,13 +37,12 @@ class UserUpdateView(SuccessMessageMixin, UserPassesMixin, UpdateView):
                      'button_name': _('Update'), }
 
 
-class UserDeleteView(SuccessMessageMixin, UserPassesMixin, DeleteView):
+class UserDeleteView(CheckUserMixin, DeleteMixin):
     model = get_user_model()
-    template_name = 'layouts/delete.html'
     success_url = reverse_lazy('users')
     success_message = _("User was deleted")
     extra_context = {'title': _('Delete user'),
-                     'form_url': 'user_delete',#reverse_lazy
+                     'form_url': 'user_delete',
                      'button_name': _('Delete'), }
 
     def form_valid(self, form):
@@ -72,4 +66,3 @@ class UserLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         messages.info(request, _("You are logged out"))
         return super().dispatch(request, *args, **kwargs)
-

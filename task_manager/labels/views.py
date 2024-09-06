@@ -1,14 +1,14 @@
-from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
+from django.contrib import messages
 
 from task_manager.labels.forms import LabelCraeteForm
 from task_manager.labels.models import Label
+from task_manager.mixins import CreateMixin, DeleteMixin, IndexMixin, UpdateMixin
 
 
-class LabelIndexView(ListView):
+class LabelIndexView(IndexMixin):
     model = Label
     template_name = 'labels/labels.html'
     context_object_name = 'labels'
@@ -16,9 +16,8 @@ class LabelIndexView(ListView):
                      'button_name': _('Create label'), }
 
 
-class LabelCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+class LabelCreateView(CreateMixin):
     form_class = LabelCraeteForm
-    template_name = 'layouts/create.html'
     success_url = reverse_lazy('labels')
     success_message = _("Label was created successfully")
     extra_context = {'title': _('Create label'),
@@ -26,10 +25,9 @@ class LabelCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
                      'button_name': _('Create'), }
 
 
-class LabelUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+class LabelUpdateView(UpdateMixin):
     form_class = LabelCraeteForm
     model = Label
-    template_name = 'layouts/update.html'
     success_url = reverse_lazy('labels')
     success_message = _("Label was updated successfully")
     extra_context = {'title': _('Update label'),
@@ -37,12 +35,16 @@ class LabelUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
                      'button_name': _('Update'), }
 
 
-class LabelDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+class LabelDeleteView(DeleteMixin):
     model = Label
-    template_name = 'layouts/delete.html'
     success_url = reverse_lazy('labels')
     success_message = _("Label was deleted")
     extra_context = {'title': _('Delete label'),
                      'form_url': 'label_delete',
                      'button_name': _('Delete'), }
 
+    def form_valid(self, form):
+        if self.object.labels.all().exists():
+            messages.error(self.request, _('The label cannot be deleted because it is in use.'))
+            return redirect('labels')
+        return super().form_valid(form)
