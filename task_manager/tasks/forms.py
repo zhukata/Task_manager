@@ -4,8 +4,8 @@ from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
 
 
-class TaskCraeteForm(forms.ModelForm):
-    name = forms.CharField(label='Name', widget=forms.TextInput())
+class TaskCreateForm(forms.ModelForm):
+    name = forms.CharField(label='Name')
     status = forms.ModelChoiceField(queryset=Status.objects.all(), label="Status")
 
     class Meta:

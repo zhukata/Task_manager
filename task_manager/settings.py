@@ -106,18 +106,18 @@ if not DEBUG:
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    # },
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
 
@@ -151,16 +151,16 @@ LOGIN_URL = 'user_login'
 
 POST_SERVER_ITEM_ACCESS_TOKEN = os.getenv('POST_SERVER_ITEM_ACCESS_TOKEN')
 
-# ROLLBAR = {
-#     'access_token': POST_SERVER_ITEM_ACCESS_TOKEN,
-#     'environment': 'development' if DEBUG else 'production',
-#     'code_version': '1.0',
-#     'branch': 'master',
-#     'root': BASE_DIR,
-# }
 ROLLBAR = {
-    'access_token': 'f1fd780515d543f1b2cf8f01ec219ba9',
+    'access_token': POST_SERVER_ITEM_ACCESS_TOKEN,
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
+    'branch': 'master',
     'root': BASE_DIR,
 }
+# ROLLBAR = {
+#     'access_token': 'f1fd780515d543f1b2cf8f01ec219ba9',
+#     'environment': 'development' if DEBUG else 'production',
+#     'code_version': '1.0',
+#     'root': BASE_DIR,
+# }

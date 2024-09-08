@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.contrib import messages
 
-from task_manager.labels.forms import LabelCraeteForm
+from task_manager.labels.forms import LabelCreateForm
 from task_manager.labels.models import Label
 from task_manager.mixins import CreateMixin, DeleteMixin, IndexMixin, UpdateMixin
 
@@ -17,7 +17,7 @@ class LabelIndexView(IndexMixin):
 
 
 class LabelCreateView(CreateMixin):
-    form_class = LabelCraeteForm
+    form_class = LabelCreateForm
     success_url = reverse_lazy('labels')
     success_message = _("Label was created successfully")
     extra_context = {'title': _('Create label'),
@@ -26,7 +26,7 @@ class LabelCreateView(CreateMixin):
 
 
 class LabelUpdateView(UpdateMixin):
-    form_class = LabelCraeteForm
+    form_class = LabelCreateForm
     model = Label
     success_url = reverse_lazy('labels')
     success_message = _("Label was updated successfully")
@@ -43,8 +43,9 @@ class LabelDeleteView(DeleteMixin):
                      'form_url': 'label_delete',
                      'button_name': _('Delete'), }
 
-    def form_valid(self, form):
-        if self.object.labels.all().exists():
+    def post(self, request, *args, **kwargs):
+        if self.get_object().labels.all().exists():
             messages.error(self.request, _('The label cannot be deleted because it is in use.'))
             return redirect('labels')
-        return super().form_valid(form)
+        return super().post(self, request, *args, **kwargs)
+    

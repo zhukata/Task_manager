@@ -33,7 +33,7 @@ class IndexMixin(ListView, LoginRequiredMixin):
     pass
 
 
-class CreateUserMixin(SuccessMessageMixin, CreateView):
+class CreateUserMixin(SuccessMessageMixin, CreateView): # base class
     template_name = 'layouts/create.html'
 
 

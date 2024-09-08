@@ -8,7 +8,12 @@ from task_manager.tasks.models import Task
 
 class TaskFilter(django_filters.FilterSet):
     labels = django_filters.ModelChoiceFilter(queryset=Label.objects.all())
-    only_author = django_filters.BooleanFilter(field_name='author', label=_('Only your tasks'), method='author_filter', widget=forms.CheckboxInput)
+    only_author = django_filters.BooleanFilter(
+        field_name='author',
+        label=_('Only your tasks'),
+        method='author_filter',
+        widget=forms.CheckboxInput
+    )
 
     class Meta:
         model = Task

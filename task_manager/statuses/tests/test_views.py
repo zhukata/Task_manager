@@ -14,6 +14,7 @@ class StatusTest(TestCase):
         self.model = Status
         self.test_user1 = get_user_model().objects.create_user(username='testuser1', password='123456')
         self.test_user1.save()
+        self.client.login(username='testuser1', password='123456')
         test_status = self.model.objects.create(name='lol')
         test_status.save()
 
@@ -22,31 +23,34 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'statuses/statuses.html')
 
-    # def test_create_status_get(self):
-    #     login = self.client.login(username='testuser1', password='123456')
+    def test_create_status_get(self):
+        response = self.client.get(reverse('status_create'))
 
-    #     response = self.client.get(reverse('status_create'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'layouts/create.html')
+        # self.assertContains(response,'<form')
+        # self.assertTrue('name', self.form.Meta.fields)
 
-    #     self.assertEqual(response.status_code, 302)
-    #     # self.assertTemplateUsed(response, 'layouts/create.html')
-    #     self.assertContains(response,'<form')
-    #     self.assertTrue('name', self.form.Meta.fields)
 
-    # def test_status_delete(self):
-    #     status = self.model.objects.get(name='lol')
-    #     task = Task.objects.create(name='test', author=self.test_user1, status=status)
-    #     response = self.client.get(reverse('status_delete', args=[status.id]))
-    #     self.assertRedirects(response, 'statuses')
+    def test_create_status_post(self):
 
-    # def test_create_status_post(self):
-    #     self.client.login(username='testuser1', password1='123456')
+        response = self.client.post(reverse('status_create'), {
+            'name': 'lose'
+        })
 
-    #     response = self.client.post(reverse('status_create'), {
-    #         'name': 'lose'
-    #     })
+        self.assertRedirects(response, expected_url=reverse('statuses'))
+        self.assertTrue(self.model.objects.filter(name='lose').exists())
 
-    #     # self.assertRedirects(response, expected_url=reverse('statuses'))
-    #     self.assertEqual(self.model.objects.get(id=1).name, 'lose')
+
+
+
+
+
+
+
+
+
+
 
     # def test_update_status_get(self):
     #     self.client.login(username='testuser1', password1='123456')

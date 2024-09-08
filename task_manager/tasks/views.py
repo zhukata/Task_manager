@@ -4,8 +4,8 @@ from django.utils.translation import gettext as _
 from django_filters.views import FilterView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from task_manager.mixins import CheckAuthorMixin, CreateMixin, DeleteMixin, UpdateMixin
-from task_manager.tasks.filter import TaskFilter
-from task_manager.tasks.forms import TaskCraeteForm
+from task_manager.tasks.filters import TaskFilter
+from task_manager.tasks.forms import TaskCreateForm
 from task_manager.tasks.models import Task
 
 
@@ -25,7 +25,7 @@ class TaskShowView(LoginRequiredMixin, DetailView):
 
 
 class TaskCreateView(CreateMixin):
-    form_class = TaskCraeteForm
+    form_class = TaskCreateForm
     success_url = reverse_lazy('tasks')
     success_message = _("Task was created successfully")
     extra_context = {'title': _('Create task'),
@@ -39,7 +39,7 @@ class TaskCreateView(CreateMixin):
 
 
 class TaskUpdateView(UpdateMixin):
-    form_class = TaskCraeteForm
+    form_class = TaskCreateForm
     model = Task
     success_url = reverse_lazy('tasks')
     success_message = _("Task was updated successfully")
