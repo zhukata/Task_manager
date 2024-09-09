@@ -22,6 +22,7 @@ class UserIndexView(ListView):
 
 class UserRegisterView(SuccessMessageMixin, CreateView):
     form_class = UserRegisterForm
+    template_name = 'layouts/create.html'
     success_url = reverse_lazy('user_login')
     success_message = _("User was created successfully")
     extra_context = {'title': _('Create user'),

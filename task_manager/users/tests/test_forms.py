@@ -11,8 +11,6 @@ class UserTestView(TestCase):
     def setUpTestData(cls):
         cls.user = get_user_model()
         cls.form = UserRegisterForm
-        test_user1 = cls.user.objects.create_user(username='testuser1', password='12345')
-        test_user1.save()
 
     def test_register_form(self):
         response = self.client.get(reverse('user_create'))
