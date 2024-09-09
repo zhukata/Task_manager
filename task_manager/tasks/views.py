@@ -3,9 +3,10 @@ from django.views.generic import DetailView
 from django.utils.translation import gettext as _
 from django_filters.views import FilterView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from task_manager.mixins import CheckAuthorMixin, CreateMixin, DeleteMixin, UpdateMixin
+from task_manager.base_views import BaseCreateView, BaseDeleteView, BaseUpdateView
 from task_manager.tasks.filters import TaskFilter
 from task_manager.tasks.forms import TaskCreateForm
+from task_manager.tasks.mixins import CheckAuthorMixin
 from task_manager.tasks.models import Task
 
 
@@ -24,12 +25,11 @@ class TaskShowView(LoginRequiredMixin, DetailView):
     template_name = 'tasks/show.html'
 
 
-class TaskCreateView(CreateMixin):
+class TaskCreateView(BaseCreateView):
     form_class = TaskCreateForm
     success_url = reverse_lazy('tasks')
     success_message = _("Task was created successfully")
     extra_context = {'title': _('Create task'),
-                     'form_url': 'task_create',
                      'button_name': _('Create'), }
 
     def form_valid(self, form):
@@ -38,20 +38,18 @@ class TaskCreateView(CreateMixin):
         return super().form_valid(form)
 
 
-class TaskUpdateView(UpdateMixin):
+class TaskUpdateView(BaseUpdateView):
     form_class = TaskCreateForm
     model = Task
     success_url = reverse_lazy('tasks')
     success_message = _("Task was updated successfully")
     extra_context = {'title': _('Update task'),
-                     'form_url': 'task_update',
                      'button_name': _('Update'), }
 
 
-class TaskDeleteView(CheckAuthorMixin, DeleteMixin):
+class TaskDeleteView(CheckAuthorMixin, BaseDeleteView):
     model = Task
     success_url = reverse_lazy('tasks')
     success_message = _("Task was deleted")
     extra_context = {'title': _('Delete task'),
-                     'form_url': 'task_delete',
                      'button_name': _('Delete'), }

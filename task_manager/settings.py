@@ -158,9 +158,3 @@ ROLLBAR = {
     'branch': 'master',
     'root': BASE_DIR,
 }
-# ROLLBAR = {
-#     'access_token': 'f1fd780515d543f1b2cf8f01ec219ba9',
-#     'environment': 'development' if DEBUG else 'production',
-#     'code_version': '1.0',
-#     'root': BASE_DIR,
-# }

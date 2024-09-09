@@ -5,10 +5,10 @@ from django.contrib import messages
 
 from task_manager.labels.forms import LabelCreateForm
 from task_manager.labels.models import Label
-from task_manager.mixins import CreateMixin, DeleteMixin, IndexMixin, UpdateMixin
+from task_manager.base_views import BaseCreateView, BaseDeleteView, BaseIndexView, BaseUpdateView
 
 
-class LabelIndexView(IndexMixin):
+class LabelIndexView(BaseIndexView):
     model = Label
     template_name = 'labels/labels.html'
     context_object_name = 'labels'
@@ -16,31 +16,28 @@ class LabelIndexView(IndexMixin):
                      'button_name': _('Create label'), }
 
 
-class LabelCreateView(CreateMixin):
+class LabelCreateView(BaseCreateView):
     form_class = LabelCreateForm
     success_url = reverse_lazy('labels')
     success_message = _("Label was created successfully")
     extra_context = {'title': _('Create label'),
-                     'form_url': 'label_create',
                      'button_name': _('Create'), }
 
 
-class LabelUpdateView(UpdateMixin):
+class LabelUpdateView(BaseUpdateView):
     form_class = LabelCreateForm
     model = Label
     success_url = reverse_lazy('labels')
     success_message = _("Label was updated successfully")
     extra_context = {'title': _('Update label'),
-                     'form_url': 'label_update',
                      'button_name': _('Update'), }
 
 
-class LabelDeleteView(DeleteMixin):
+class LabelDeleteView(BaseDeleteView):
     model = Label
     success_url = reverse_lazy('labels')
     success_message = _("Label was deleted")
     extra_context = {'title': _('Delete label'),
-                     'form_url': 'label_delete',
                      'button_name': _('Delete'), }
 
     def post(self, request, *args, **kwargs):
