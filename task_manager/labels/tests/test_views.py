@@ -1,20 +1,18 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
 
 from task_manager.labels.models import Label
 
-class LabelListViewTest(TestCase):
-    fixtures = ["labels.json",
-                'statuses.json',
-                'tasks.json',
-                'users.json',
-                ]
+class LabelViewTest(TestCase):
+    fixtures = [
+        "labels.json",
+        'statuses.json',
+        'tasks.json',
+        'users.json',
+    ]
 
     def setUp(self):
-        self.test_user1 = get_user_model().objects.create_user(username='testuser1', password='123456')
-        self.test_user1.save()
-        self.client.login(username='testuser1', password='123456')
+        self.client.login(username='test_user', password='123456')
 
     def test_list_view(self):
         response = self.client.get(reverse('labels'))

@@ -3,7 +3,7 @@
       "model": "auth.user",
       "pk": 1,
       "fields": {
-        "password": "123456",
+        "password": "pbkdf2_sha256$720000$OOx1Dh4zffd7h8qEhpPxPs$L3KlcyAmZpj8z6G7mfnVGSzL4tLJI21I1Zb2jdR2Ry8=",
         "last_login": "2024-09-05T09:07:15.778Z",
         "is_superuser": false,
         "username": "test_user",
@@ -21,16 +21,16 @@
       "model": "auth.user",
       "pk": 2,
       "fields": {
-        "password": "123456",
-        "last_login": "2024-09-05T09:07:15.778Z",
+        "password": "pbkdf2_sha256$720000$OOx1Dh4zffd7h8qEhpPxPs$L3KlcyAmZpj8z6G7mfnVGSzL4tLJI21I1Zb2jdR2Ry8=",
+        "last_login": null,
         "is_superuser": false,
-        "username": "test_user2",
-        "first_name": "test",
-        "last_name": "testik",
-        "email": "zhukata@gmail.com",
+        "username": "test_user_2",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-08-10T15:15:09.742Z",
+        "date_joined": "2024-08-15T15:30:43.590Z",
         "groups": [],
         "user_permissions": []
       }
