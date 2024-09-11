@@ -2,34 +2,28 @@ from django import forms
 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext as _
 
 
 class UserRegisterForm(UserCreationForm):
-    first_name = forms.CharField(label='first_name', widget=forms.TextInput())
-    last_name = forms.CharField(label='last_name', widget=forms.TextInput())
-    username = forms.CharField(label='username', widget=forms.TextInput())
-    password1 = forms.CharField(label='password', widget=forms.PasswordInput(), min_length=3)
-    password2 = forms.CharField(label='repeat password', widget=forms.PasswordInput(), min_length=3)
+    first_name = forms.CharField(label=_('first name'), widget=forms.TextInput())
+    last_name = forms.CharField(label=_('last name'), widget=forms.TextInput())
+    username = forms.CharField(label=_('username'), widget=forms.TextInput())
+    password1 = forms.CharField(label=_('password'), widget=forms.PasswordInput(), min_length=3)
+    password2 = forms.CharField(label=_('repeat password'), widget=forms.PasswordInput(), min_length=3)
 
     class Meta:
         model = get_user_model()
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
-        labels = {'email': 'email'}
+        fields = ['first_name', 'last_name', 'username', 'password1', 'password2']
 
 
 class UserUpdateForm(UserChangeForm):
-    # def __init__(self, *args, **kwargs):
-    #     super(UserChangeForm, self).__init__(*args, **kwargs)
-
-    #     for fieldname in ['username', 'password1', 'password2']:
-    #         self.fields[fieldname].help_text = None
-
-    username = forms.CharField(label='username', widget=forms.TextInput())
-    password1 = forms.CharField(label='password', widget=forms.PasswordInput(), min_length=3)
-    password2 = forms.CharField(label='repeat password', widget=forms.PasswordInput(), min_length=3)
+    username = forms.CharField(label=_('username'), widget=forms.TextInput())
+    password1 = forms.CharField(label=_('password'), widget=forms.PasswordInput(), min_length=3)
+    password2 = forms.CharField(label=_('repeat password'), widget=forms.PasswordInput(), min_length=3)
 
     class Meta:
         model = get_user_model()
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
-        labels = {'first_name': 'first_name', 'last_name': 'last_name', 'email': 'email'}
+        fields = ['first_name', 'last_name', 'username', 'password1', 'password2']
+        labels = {'first_name': _('first name'), 'last_name': _('last name')}
         help_texts = {'password': None, }

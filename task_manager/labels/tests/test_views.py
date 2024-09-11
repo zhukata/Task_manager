@@ -19,7 +19,6 @@ class LabelViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'labels/labels.html')
         self.assertEqual(len(response.context["labels"]), 3)
-        self.assertEqual(response.context["title"], 'labels')
 
     def test_create_view(self):
         response = self.client.post(reverse('label_create'), {

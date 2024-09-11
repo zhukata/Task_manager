@@ -18,6 +18,7 @@ class TaskFilter(django_filters.FilterSet):
     class Meta:
         model = Task
         fields = ['status', 'executor', 'labels', 'only_author']
+        labels = {'status': _('Status'), 'executor': _('Executor'), 'labels': _('Label'), }
 
     def author_filter(self, queryset, name, value):
         if value:

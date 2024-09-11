@@ -25,7 +25,7 @@ class UserRegisterView(SuccessMessageMixin, CreateView):
     template_name = 'layouts/create.html'
     success_url = reverse_lazy('user_login')
     success_message = _("User was created successfully")
-    extra_context = {'title': _('Create user'),
+    extra_context = {'title': _('Sign up'),
                      'button_name': _('Create'), }
 
 

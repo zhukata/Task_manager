@@ -12,7 +12,7 @@ class LabelIndexView(BaseIndexView):
     model = Label
     template_name = 'labels/labels.html'
     context_object_name = 'labels'
-    extra_context = {'title': _('labels'),
+    extra_context = {'title': _('Labels'),
                      'button_name': _('Create label'), }
 
 
