@@ -18,6 +18,7 @@ psycopg2-binary = "^2.9.9"
 gunicorn = "^22.0.0"
 django-filter = "^24.3"
 rollbar = "^1.0.0"
+coverage = "^7.6.1"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.1.1"

@@ -4,6 +4,9 @@ install:
 test:
 	poetry run python manage.py test --verbosity 2
 
+test-coverage:
+	coverage run manage.py test
+
 lint:
 	poetry run flake8 task_manager
 
