@@ -64,7 +64,7 @@ class UserTestView(TestCase):
 
     def test_user_delete(self):
         self.client.login(username='test_user_2', password='123456')
-        response = self.client.post(reverse('user_delete', args=[2]), )
+        response = self.client.post(reverse('user_delete', args=[2]))
         self.assertRedirects(response, expected_url=reverse('users'))
         self.assertFalse(get_user_model().objects.filter(username='test_user_2').exists())
     
@@ -77,5 +77,11 @@ class UserTestView(TestCase):
         #     messages.get_messages(response.request)[0],
         #     'You do not have permission to modify another user.'
         # )
+
+    def test_user_with_task_delete(self):
+        self.client.login(username='test_user', password='123456')
+        response = self.client.get(reverse('user_delete', args=[1]))
+        # self.assertRedirects(response, expected_url=reverse('users'))
+        self.assertTrue(get_user_model().objects.filter(username='test_user').exists())
 
 
