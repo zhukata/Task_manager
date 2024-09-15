@@ -45,4 +45,3 @@ class LabelDeleteView(BaseDeleteView):
             messages.error(self.request, _('The label cannot be deleted because it is in use.'))
             return redirect('labels')
         return super().post(self, request, *args, **kwargs)
-    

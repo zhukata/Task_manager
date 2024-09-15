@@ -4,6 +4,7 @@ from django.urls import reverse
 from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
 
+
 class TaskViewTest(TestCase):
     fixtures = [
         "labels.json",
@@ -15,13 +16,13 @@ class TaskViewTest(TestCase):
     def setUp(self):
         self.client.login(username='test_user', password='123456')
         self.status = Status.objects.get(id=1)
-    
+
     def test_show_view(self):
         response = self.client.get(reverse('task_show', args=[1]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tasks/show.html')
         self.assertEqual((response.context['object'].name), Task.objects.get(id=1).name)
-    
+
     def test_list_view(self):
         response = self.client.get(reverse('tasks'))
         self.assertEqual(response.status_code, 200)

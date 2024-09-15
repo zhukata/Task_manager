@@ -43,5 +43,4 @@ class StatusViewTest(TestCase):
 
     def test_delete_with_task(self):
         self.client.post(reverse('status_delete', args=[1]))
-        response = self.client.get(reverse('statuses'))
         self.assertTrue(Status.objects.filter(id=1).exists())

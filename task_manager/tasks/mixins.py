@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import AccessMixin
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
+
 class CheckAuthorMixin(AccessMixin):
 
     def dispatch(self, request, *args, **kwargs):

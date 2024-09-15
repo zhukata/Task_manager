@@ -22,7 +22,7 @@ class UserTestView(TestCase):
         response = self.client.get(reverse('tasks'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/users/login/?next=/tasks/')
-    
+
     def test_logged(self):
         self.client.login(username='test_user', password='123456')
         response = self.client.get(reverse('tasks'))
@@ -38,7 +38,7 @@ class UserTestView(TestCase):
         })
         self.assertTrue(get_user_model().objects.filter(username='test_user3').exists())
         self.assertRedirects(response, expected_url=reverse('user_login'))
-    
+
     def test_update_user(self):
         self.client.login(username='test_user', password='123456')
         response = self.client.post(reverse('user_update', args=[1]), {
@@ -67,7 +67,7 @@ class UserTestView(TestCase):
         response = self.client.post(reverse('user_delete', args=[2]))
         self.assertRedirects(response, expected_url=reverse('users'))
         self.assertFalse(get_user_model().objects.filter(username='test_user_2').exists())
-    
+
     def test_user_has_no_permission_delete(self):
         self.client.login(username='test_user_2', password='123456')
         response = self.client.get(reverse('user_delete', args=[1]), )
@@ -83,5 +83,3 @@ class UserTestView(TestCase):
         response = self.client.get(reverse('user_delete', args=[1]))
         # self.assertRedirects(response, expected_url=reverse('users'))
         self.assertTrue(get_user_model().objects.filter(username='test_user').exists())
-
-

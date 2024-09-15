@@ -3,6 +3,7 @@ from django.urls import reverse
 
 from task_manager.labels.models import Label
 
+
 class LabelViewTest(TestCase):
     fixtures = [
         "labels.json",
@@ -45,5 +46,4 @@ class LabelViewTest(TestCase):
 
     def test_delete_with_task(self):
         self.client.post(reverse('label_delete', args=[3]))
-        response = self.client.get(reverse('labels'))
         self.assertTrue(Label.objects.filter(id=3).exists())
