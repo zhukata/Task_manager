@@ -56,7 +56,7 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     form_class = AuthenticationForm
     template_name = 'layouts/create.html'
     success_message = _("You are login")
-    extra_context = {'title': _('Login'),
+    extra_context = {'title': _('Authorization'),
                      'button_name': _('Login'), }
 
 
