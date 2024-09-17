@@ -99,7 +99,7 @@ msgstr "Изменить статус"
 
 #: task_manager/statuses/views.py:39
 msgid "Status was deleted"
-msgstr "Статус удален"
+msgstr "Статус успешно удален"
 
 #: task_manager/statuses/views.py:40
 msgid "Delete status"
