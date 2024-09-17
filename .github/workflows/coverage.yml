@@ -7,6 +7,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DEBUG: ${{ secrets.DEBUG }}
+      ROLLBAR_TOKEN: ${{ secrets.POST_SERVER_ITEM_ACCESS_TOKEN }}
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     strategy:
       matrix:
         # we want to test our package on several versions of Python
