@@ -6,6 +6,7 @@ from django.contrib.auth.views import LogoutView, LoginView
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import gettext as _
 
+
 class IndexView(View):
 
     def get(self, request, *args, **kwargs):

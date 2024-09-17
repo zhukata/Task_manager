@@ -10,7 +10,13 @@ class Task(models.Model):
     description = models.TextField(max_length=1000, null=True, blank=True)
     status = models.ForeignKey(Status, on_delete=models.PROTECT, related_name='statuses')
     author = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, related_name='author')
-    executor = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, null=True, blank=True, related_name='executor')
+    executor = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name='executor'
+    )
     labels = models.ManyToManyField(Label, related_name='labels', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
