@@ -2,14 +2,12 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.contrib.auth.views import LogoutView, LoginView
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.base_views import BaseDeleteView, BaseUpdateView
 from django.views.generic import CreateView, ListView
-from task_manager.users.forms import UserRegisterForm, UserUpdateForm
 from django.utils.translation import gettext as _
 
+from task_manager.base_views import BaseDeleteView, BaseUpdateView
+from task_manager.users.forms import UserRegisterForm, UserUpdateForm
 from task_manager.users.mixins import CheckUserMixin
 
 
@@ -50,18 +48,3 @@ class UserDeleteView(CheckUserMixin, BaseDeleteView):
             messages.error(self.request, _('Cannot delete user because it is in use'))
             return redirect('users')
         return super().form_valid(form)
-
-
-class UserLoginView(SuccessMessageMixin, LoginView):
-    form_class = AuthenticationForm
-    template_name = 'layouts/create.html'
-    success_message = _("You are login")
-    extra_context = {'title': _('Authorization'),
-                     'button_name': _('Login'), }
-
-
-class UserLogoutView(LogoutView):
-
-    def dispatch(self, request, *args, **kwargs):
-        messages.info(request, _("You are logged out"))
-        return super().dispatch(request, *args, **kwargs)
