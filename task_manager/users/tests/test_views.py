@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import get_user_model
-from django.contrib import messages
+# from django.contrib import messages
 
 
 class UserTestView(TestCase):
@@ -80,6 +80,6 @@ class UserTestView(TestCase):
 
     def test_user_with_task_delete(self):
         self.client.login(username='test_user', password='123456')
-        response = self.client.get(reverse('user_delete', args=[1]))
+        self.client.get(reverse('user_delete', args=[1]))
         # self.assertRedirects(response, expected_url=reverse('users'))
         self.assertTrue(get_user_model().objects.filter(username='test_user').exists())
