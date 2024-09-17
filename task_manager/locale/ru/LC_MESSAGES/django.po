@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-17 15:29+0300\n"
+"POT-Creation-Date: 2024-09-17 16:52+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,13 +67,10 @@ msgid "Delete label"
 msgstr "Удалить метку"
 
 #: task_manager/labels/views.py:41 task_manager/statuses/views.py:41
-#: task_manager/tasks/views.py:55 task_manager/templates/labels/labels.html:26
-#: task_manager/templates/statuses/statuses.html:26
-#: task_manager/templates/tasks/show.html:45
-#: task_manager/templates/tasks/tasks.html:43
-#: task_manager/templates/users/users.html:27 task_manager/users/views.py:44
-msgid "Delete"
-msgstr "Удалить"
+#: task_manager/tasks/views.py:55 task_manager/users/views.py:44
+
+msgid "Yes, delete"
+msgstr "Да, удалить"
 
 #: task_manager/labels/views.py:45
 msgid "The label cannot be deleted because it is in use."
@@ -200,6 +197,14 @@ msgstr "Дата создания"
 msgid "Change"
 msgstr "Изменить"
 
+#: task_manager/templates/labels/labels.html:26
+#: task_manager/templates/statuses/statuses.html:26
+#: task_manager/templates/tasks/show.html:45
+#: task_manager/templates/tasks/tasks.html:43
+#: task_manager/templates/users/users.html:27
+msgid "Delete"
+msgstr "Удалить"
+
 #: task_manager/templates/layouts/base.html:14
 msgid "Task Manager"
 msgstr "Менеджер задач"
@@ -219,6 +224,10 @@ msgstr "Вход"
 #: task_manager/templates/layouts/base.html:50 task_manager/users/views.py:26
 msgid "Sign Up"
 msgstr "Регистрация"
+
+#: task_manager/templates/layouts/delete.html:10
+msgid "Are you sure you want to delete"
+msgstr "Вы уверены, что хотите удалить"
 
 #: task_manager/templates/tasks/show.html:16
 #: task_manager/templates/tasks/tasks.html:25

@@ -52,4 +52,4 @@ class TaskDeleteView(CheckAuthorMixin, BaseDeleteView):
     success_url = reverse_lazy('tasks')
     success_message = _("Task was deleted")
     extra_context = {'title': _('Delete task'),
-                     'button_name': _('Delete'), }
+                     'button_name': _('Yes, delete'), }

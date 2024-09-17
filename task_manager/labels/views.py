@@ -38,7 +38,7 @@ class LabelDeleteView(BaseDeleteView):
     success_url = reverse_lazy('labels')
     success_message = _("Label was deleted")
     extra_context = {'title': _('Delete label'),
-                     'button_name': _('Delete'), }
+                     'button_name': _('Yes, delete'), }
 
     def post(self, request, *args, **kwargs):
         if self.get_object().labels.all().exists():

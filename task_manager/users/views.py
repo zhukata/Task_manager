@@ -41,7 +41,7 @@ class UserDeleteView(CheckUserMixin, BaseDeleteView):
     success_url = reverse_lazy('users')
     success_message = _("User was deleted")
     extra_context = {'title': _('Delete user'),
-                     'button_name': _('Delete'), }
+                     'button_name': _('Yes, delete'), }
 
     def form_valid(self, form):
         if self.object.author.all().exists() or self.object.executor.all().exists():

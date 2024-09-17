@@ -38,7 +38,7 @@ class StatusDeleteView(BaseDeleteView):
     success_url = reverse_lazy('statuses')
     success_message = _("Status was deleted")
     extra_context = {'title': _('Delete status'),
-                     'button_name': _('Delete'), }
+                     'button_name': _('Yes, delete'), }
 
     def post(self, request, *args, **kwargs):
         if self.get_object().statuses.all().exists():
