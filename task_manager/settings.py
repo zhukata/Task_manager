@@ -91,13 +91,13 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 ENVIRONMENT = os.getenv('ENVIRONMENT')
 
-if ENVIRONMENT == 'dev':
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+DATABASES = {
+'default': {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': BASE_DIR / 'db.sqlite3',
 }
+}
+
 if ENVIRONMENT == 'prod':
     DATABASES = {
         'default':
