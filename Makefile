@@ -5,7 +5,8 @@ test:
 	poetry run python manage.py test --verbosity 2
 
 test-coverage:
-	coverage run manage.py test
+	coverage run --source='.' manage.py test
+	coverage xml
 
 lint:
 	poetry run flake8 task_manager
