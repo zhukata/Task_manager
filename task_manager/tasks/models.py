@@ -8,8 +8,16 @@ from django.contrib.auth import get_user_model
 class Task(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=1000, null=True, blank=True)
-    status = models.ForeignKey(Status, on_delete=models.PROTECT, related_name='statuses')
-    author = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, related_name='author')
+    status = models.ForeignKey(
+        Status,
+        on_delete=models.PROTECT,
+        related_name='statuses'
+    )
+    author = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.PROTECT,
+        related_name='author'
+    )
     executor = models.ForeignKey(
         get_user_model(),
         on_delete=models.PROTECT,

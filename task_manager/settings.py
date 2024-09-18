@@ -164,3 +164,5 @@ ROLLBAR = {
     'branch': 'master',
     'root': BASE_DIR,
 }
+
+AUTH_USER_MODEL = 'users.User'
