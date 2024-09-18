@@ -21,7 +21,7 @@ class UserTestView(TestCase):
     def test_redirect_if_not_logged_in(self):
         response = self.client.get(reverse('tasks'))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/users/login/?next=/tasks/')
+        self.assertRedirects(response, '/login/?next=/tasks/')
 
     def test_logged(self):
         self.client.login(username='test_user', password='123456')
