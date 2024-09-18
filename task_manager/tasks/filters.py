@@ -18,7 +18,7 @@ class TaskFilter(django_filters.FilterSet):
     )
     labels = django_filters.ModelChoiceFilter(
         queryset=Label.objects.all(),
-        label=_('Labels')
+        label=_('Label')
     )
     only_author = django_filters.BooleanFilter(
         field_name='author',
