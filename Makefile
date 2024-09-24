@@ -6,6 +6,7 @@ test:
 
 test-coverage:
 	poetry run coverage run manage.py test
+	poetry run coverage xml
 
 lint:
 	poetry run flake8 task_manager
