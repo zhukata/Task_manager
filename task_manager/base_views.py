@@ -15,5 +15,5 @@ class BaseUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     template_name = 'layouts/update.html'
 
 
-class BaseDeleteView(SuccessMessageMixin, DeleteView):
+class BaseDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'layouts/delete.html'

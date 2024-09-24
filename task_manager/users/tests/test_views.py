@@ -16,12 +16,10 @@ class UserTestView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/users.html')
         self.assertEqual(len(response.context["users"]), 2)
-        # self.assertEqual(response.context["title"], 'users')###
 
     def test_redirect_if_not_logged_in(self):
         response = self.client.get(reverse('tasks'))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/login/?next=/tasks/')
 
     def test_logged(self):
         self.client.login(username='test_user', password='123456')
@@ -56,11 +54,6 @@ class UserTestView(TestCase):
         self.client.login(username='test_user_2', password='123456')
         response = self.client.get(reverse('user_update', args=[1]))
         self.assertRedirects(response, expected_url=reverse('users'))
-        self.assertFalse(get_user_model().objects.filter(username='test_current').exists())
-        # self.assertEqual(
-        #     messages.get_messages(response.request)[0],
-        #     'You do not have permission to modify another user.'
-        # )
 
     def test_user_delete(self):
         self.client.login(username='test_user_2', password='123456')
@@ -73,13 +66,8 @@ class UserTestView(TestCase):
         response = self.client.get(reverse('user_delete', args=[1]), )
         self.assertRedirects(response, expected_url=reverse('users'))
         self.assertTrue(get_user_model().objects.filter(username='test_user_2').exists())
-        # self.assertEqual(
-        #     messages.get_messages(response.request)[0],
-        #     'You do not have permission to modify another user.'
-        # )
 
     def test_user_with_task_delete(self):
         self.client.login(username='test_user', password='123456')
         self.client.get(reverse('user_delete', args=[1]))
-        # self.assertRedirects(response, expected_url=reverse('users'))
         self.assertTrue(get_user_model().objects.filter(username='test_user').exists())

@@ -10,9 +10,11 @@ from task_manager.base_views import BaseDeleteView, BaseUpdateView
 from task_manager.users.forms import UserRegisterForm, UserUpdateForm
 from task_manager.users.mixins import CheckUserMixin
 
+User = get_user_model()
+
 
 class UserIndexView(ListView):
-    model = get_user_model()
+    model = User
     template_name = 'users/users.html'
     context_object_name = 'users'
     extra_context = {'title': _('Users'), }
@@ -29,7 +31,7 @@ class UserRegisterView(SuccessMessageMixin, CreateView):
 
 class UserUpdateView(CheckUserMixin, BaseUpdateView):
     form_class = UserUpdateForm
-    model = get_user_model()
+    model = User
     success_url = reverse_lazy('users')
     success_message = _("User was updated successfully")
     extra_context = {'title': _('Update user'),
@@ -37,7 +39,7 @@ class UserUpdateView(CheckUserMixin, BaseUpdateView):
 
 
 class UserDeleteView(CheckUserMixin, BaseDeleteView):
-    model = get_user_model()
+    model = User
     success_url = reverse_lazy('users')
     success_message = _("User was deleted")
     extra_context = {'title': _('Delete user'),

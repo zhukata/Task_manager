@@ -27,11 +27,6 @@ class TaskFilter(django_filters.FilterSet):
         widget=forms.CheckboxInput
     )
 
-    # class Meta:
-    #     model = Task
-    #     fields = ['status', 'executor', 'labels', 'only_author']
-    #     labels = {'status': _('Status'), 'executor': _('Executor'), }
-
     def author_filter(self, queryset, name, value):
         if value:
             return queryset.filter(author=self.request.user)
