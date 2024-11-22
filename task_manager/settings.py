@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'task_manager.tasks',
     'task_manager.labels',
     'django_filters',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -166,3 +167,10 @@ ROLLBAR = {
 }
 
 AUTH_USER_MODEL = 'users.User'
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': [
+#         'rest_framework.renderers.JSONRenderer',
+#         'rest_framework.renderers.BrowsableAPIRenderer',
+#     ]
+# }

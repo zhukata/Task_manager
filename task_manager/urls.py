@@ -16,7 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework import routers
+
 from task_manager import views
+from task_manager.tasks.views import TaskViewSet
+
+
+router = routers.SimpleRouter()
+router.register(r'tasks', TaskViewSet)
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='home'),
@@ -27,4 +34,5 @@ urlpatterns = [
     path('login/', views.UserLoginView.as_view(), name='user_login'),
     path('logout/', views.UserLogoutView.as_view(), name='user_logout'),
     path('admin/', admin.site.urls),
+    path('api/v1/', include(router.urls)),
 ]

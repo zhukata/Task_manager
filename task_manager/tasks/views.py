@@ -3,11 +3,14 @@ from django.views.generic import DetailView
 from django.utils.translation import gettext as _
 from django_filters.views import FilterView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework import generics, viewsets
+
 from task_manager.base_views import BaseCreateView, BaseDeleteView, BaseUpdateView
 from task_manager.tasks.filters import TaskFilter
 from task_manager.tasks.forms import TaskCreateForm
 from task_manager.tasks.mixins import CheckAuthorMixin
 from task_manager.tasks.models import Task
+from task_manager.tasks.serializers import TaskSerializer
 
 
 class TaskIndexView(LoginRequiredMixin, FilterView):
@@ -53,3 +56,8 @@ class TaskDeleteView(CheckAuthorMixin, BaseDeleteView):
     success_message = _("Task was deleted")
     extra_context = {'title': _('Delete task'),
                      'button_name': _('Yes, delete'), }
+
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
