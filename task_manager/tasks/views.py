@@ -4,6 +4,7 @@ from django.utils.translation import gettext as _
 from django_filters.views import FilterView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework import generics, viewsets
+from rest_framework .permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 from task_manager.base_views import BaseCreateView, BaseDeleteView, BaseUpdateView
 from task_manager.tasks.filters import TaskFilter
@@ -61,3 +62,4 @@ class TaskDeleteView(CheckAuthorMixin, BaseDeleteView):
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    permission_classes = (IsAuthenticated,)
