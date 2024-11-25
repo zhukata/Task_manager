@@ -20,6 +20,7 @@ django-filter = "^24.3"
 rollbar = "^0.16.3"
 coverage = "^7.6.1"
 django-rest-framework = "^0.1.0"
+djangorestframework-simplejwt = "^5.3.1"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.1.1"
