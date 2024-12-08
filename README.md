@@ -101,11 +101,11 @@ There is always an option for those who like to do everything by themselves.
 
 #### Python
 
-Before installing the package make sure you have Python version 3.8 or higher installed:
+Before installing the package make sure you have Python version 3.10 or higher installed:
 
 ```bash
 >> python --version
-Python 3.8+
+Python 3.10+
 ```
 
 #### Poetry
@@ -192,17 +192,17 @@ The demo version is available on Render platform:
 
 ### Dependencies
 
-python = "^3.10"
-Django = "^5.0.8"
-python-dotenv = "^1.0.1"
-django-bootstrap5 = "^24.2"
-dj-database-url = "^2.2.0"
-psycopg2-binary = "^2.9.9"
-gunicorn = "^22.0.0"
-django-filter = "^24.3"
-rollbar = "^0.16.3"
-django-rest-framework = "^0.1.0"
-djangorestframework-simplejwt = "^5.3.1"
+* python = "^3.10"
+* Django = "^5.0.8"
+* python-dotenv = "^1.0.1"
+* django-bootstrap5 = "^24.2"
+* dj-database-url = "^2.2.0"
+* psycopg2-binary = "^2.9.9"
+* gunicorn = "^22.0.0"
+* django-filter = "^24.3"
+* rollbar = "^0.16.3"
+* django-rest-framework = "^0.1.0"
+* djangorestframework-simplejwt = "^5.3.1"
 
 ### Dev Dependencies
 
@@ -219,7 +219,7 @@ djangorestframework-simplejwt = "^5.3.1"
     <dt><code>make dev</code></dt>
     <dd>Run Django development server at http://127.0.0.1:8000/</dd>
     <dt><code>make start</code></dt>
-    <dd>Start the Gunicorn web server at http://0.0.0.0:8000 if no port is specified in the environment variables.</dd>
+    <dd>Start the Gunicorn web server at http://127.0.0.1:8000/ if no port is specified in the environment variables.</dd>
     <dt><code>make lint</code></dt>
     <dd>Check code with flake8 linter.</dd>
     <dt><code>make test</code></dt>
