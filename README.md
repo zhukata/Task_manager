@@ -70,32 +70,6 @@ When the tasks become numerous, it becomes difficult to navigate through them. F
 
 ## Installation
 
-### _Easy Mode:_
-
-Why not just let [Docker Compose](https://docs.docker.com/compose/) do all the work, right? Of course, for the magic to happen, [Docker](https://docs.docker.com/desktop/) must be installed and running. 
-
-Clone the project:
-```bash
->> git clone https://github.com/ivnvxd/python-project-52.git && cd python-project-52
-```
-
-Create `.env` file in the root folder and add following variables:
-```dotenv
-DATABASE_URL=postgresql://postgres:password@db:5432/postgres
-SECRET_KEY={your secret key} # Django will refuse to start if SECRET_KEY is not set
-LANGUAGE=en-us # By default the app will use ru-ru locale
-```
-
-And run:
-```shell
->> docker-compose up
-```
-
-Voila! The server is running at http://0.0.0.0:8000 and you can skip directly to [Available Actions](#available-actions-) section.
-
-### _Manual Install:_
-
-There is always an option for those who like to do everything by themselves.
 
 ### Prerequisites
 
@@ -128,7 +102,7 @@ _Alternatively you can skip this step and use **SQLite** database locally._
 To use the application, you need to clone the repository to your computer. This is done using the `git clone` command. Clone the project:
 
 ```bash
->> git clone https://github.com/ivnvxd/python-project-52.git && cd python-project-52
+>> git clone https://github.com/zhukata/Task_manager && cd Task_manager
 ```
 
 After that install all necessary dependencies:
@@ -141,7 +115,8 @@ Create `.env` file in the root folder and add following variables:
 ```dotenv
 DATABASE_URL=postgresql://{provider}://{user}:{password}@{host}:{port}/{db}
 SECRET_KEY={your secret key} # Django will refuse to start if SECRET_KEY is not set
-LANGUAGE=en-us # By default the app will use ru-ru locale
+ALLOWED_HOSTS = 'webserver, localhost, 127.0.0.1:8000, 0.0.0.0'
+DEBUG = True
 ```
 _If you choose to use **SQLite** DBMS, do not add `DATABASE_URL` variable._
 
