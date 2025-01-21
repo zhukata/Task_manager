@@ -11,7 +11,7 @@ COPY manage.py .
 RUN pip install --no-cache-dir poetry
 
 # Устанавливаем зависимости
-RUN poetry config virtualenvs.create false && poetry install
+RUN poetry config virtualenvs.create true && poetry install --no-root
 
 EXPOSE 8000
 
