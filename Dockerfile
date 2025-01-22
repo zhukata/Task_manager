@@ -1,17 +1,17 @@
 FROM python:3.12
 
-WORKDIR /
+WORKDIR /app
 
-# Копируем файлы проекта
 COPY pyproject.toml poetry.lock ./
+
+RUN pip install --no-cache-dir poetry
+
+RUN poetry config virtualenvs.create false && poetry install --no-root
+
 COPY task_manager ./task_manager
 COPY manage.py .
 
-# Устанавливаем Poetry
-RUN pip install --no-cache-dir poetry
-
-# Устанавливаем зависимости
-RUN poetry config virtualenvs.create true && poetry install --no-root
+ENV PYTHONPATH=/app
 
 EXPOSE 8000
 

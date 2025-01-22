@@ -35,7 +35,7 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 
 ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '').split(',')]
-print("Parsed ALLOWED_HOSTS:", ALLOWED_HOSTS)
+# print("Parsed ALLOWED_HOSTS:", ALLOWED_HOSTS)
 
 
 # Application definition
